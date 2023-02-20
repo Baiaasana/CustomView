@@ -54,10 +54,6 @@ class CustomView(context: Context, attrs: AttributeSet) : LinearLayout(context, 
         textView.setAdapter(ArrayAdapter(context, R.layout.custom_view_item, allItems))
     }
 
-    fun setTitle(str: String) {
-        textView.setText(str)
-    }
-
     fun getSelectedData(): MutableList<String> {
         return selectedItems
     }
@@ -74,6 +70,7 @@ class CustomView(context: Context, attrs: AttributeSet) : LinearLayout(context, 
         val listAdapter = listView.adapter ?: return
         var totalHeight = listView.paddingTop + listView.paddingBottom
         for (i in 0 until listAdapter.count) {
+
             // This next line is needed before you call measure or else you won't get measured height at all. The listitem needs to be drawn first to know the height.
 
             val listItem = listAdapter.getView(i, null, listView)
@@ -86,7 +83,6 @@ class CustomView(context: Context, attrs: AttributeSet) : LinearLayout(context, 
         val params = listView.layoutParams
         params.height = totalHeight + listView.dividerHeight * (listAdapter.count - 1)
         listView.layoutParams = params
-//            listView.requestLayout()
     }
 
     inner class CustomViewAdapter(
